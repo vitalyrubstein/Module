@@ -1,14 +1,11 @@
 var testModule = (function(){
 	
-	var dVar = 30;
+	var defaults = {title: 'Hello'};
 	
-	var init = function(newDVar){
+	var init = function(options){
 		
-		if (typeof newDVar != 'undefined'){
-			dVar = newDVar;
-		}
-		
-		alert(dVar);
+		initOptions = $.extend(defaults, options);		
+		alert(initOptions['title']);
 		
 		}
 	
