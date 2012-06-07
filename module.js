@@ -2,10 +2,17 @@ var testModule = (function(){
 	
 	var dVar = 30;
 	
-	return {
-		init: function(newDVar){
+	var init = function(newDVar){
+		
+		if (typeof newDVar != 'undefined'){
 			dVar = newDVar;
-			alert(dVar);
-			}
+		}
+		
+		alert(dVar);
+		
+		}
+	
+	return {
+		init: init
 	}
 })();
