@@ -1,16 +1,16 @@
 var testModule = (function(){
 	
-	var defaults = {title: 'Ready'};
+	var defaults = {title: 'Init Ready'};
 	var model;
 	var server;
 	
 	var init = function(options){
 		
 		initOptions = $.extend(defaults, options);		
-		alert(initOptions['title']);
+		console.log(initOptions['title']);
 		
-		model = new HomeModel;
-		server = new PhotoDataServer;
+		model = new HomeModel();
+		server = new PhotoDataServer();
 		HomeView();
 		HomeController();
 		
@@ -50,9 +50,8 @@ var testModule = (function(){
 	var HomeView = function(){
 	
 		$('div#main').append('<button id="getdata">Get Data</button>');
-		$('button#getdata').on('initModel', function(){
-			console.log('Clicked');
-			$(this).text('Done');
+		$(testModule).on('initModel', function(){
+			$('button#getdata').text('Done');
 		});
 	};
 	
