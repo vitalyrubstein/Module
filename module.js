@@ -1,11 +1,18 @@
 var testModule = (function(){
 	
 	var defaults = {title: 'Ready'};
+	var model;
+	var server;
 	
 	var init = function(options){
 		
 		initOptions = $.extend(defaults, options);		
 		alert(initOptions['title']);
+		
+		model = new HomeModel;
+		server = new PhotoDataServer;
+		HomeView();
+		HomeController();
 		
 	};
 	
@@ -31,7 +38,7 @@ var testModule = (function(){
 		
 		this.initModel = function(json){
 			data = json;
-			$('body').trigger('init');
+			$(testModule).trigger('initModel');
 		};
 		
 		this.getData = function(){
@@ -43,7 +50,8 @@ var testModule = (function(){
 	var HomeView = function(){
 	
 		$('div#main').append('<button id="getdata">Get Data</button>');
-		$('button#getdata').on('init', function(){
+		$('button#getdata').on('initModel', function(){
+			console.log('Clicked');
 			$(this).text('Done');
 		});
 	};
@@ -51,13 +59,11 @@ var testModule = (function(){
 	var HomeController = function(){
 		
 		$('button#getdata').click(function(){
-			PhotoDataServer.getPhotos(30000,2,HomeModel.initModel);
+			server.getPhotos(30000,2,model.initModel);
 		});
 	};
 		
 	return {
-		init: init,
-		view: HomeView,
-		controller: HomeController
+		init: init
 	}
 })();
