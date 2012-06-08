@@ -1,12 +1,12 @@
 var testModule = (function(){
 	
 	var defaults = {title: 'Ready'};
-	
+	var model = null;
 	var init = function(options){
 		
 		initOptions = $.extend(defaults, options);		
 		alert(initOptions['title']);
-		
+		model = new HomeModel();
 	};
 	
 	var PhotoDataServer = function () {
